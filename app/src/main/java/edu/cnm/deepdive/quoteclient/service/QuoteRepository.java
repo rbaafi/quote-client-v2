@@ -69,14 +69,16 @@ public class QuoteRepository {
               .subscribeOn(Schedulers.from(networkPool))
       );
     } else {
-      // TODO Invoke PUT.
-      throw new UnsupportedOperationException("Not yet implemented");
+      return Completable.fromSingle(
+          proxy.put(String.format(OAUTH_HEADER_FORMAT, token), quote, quote.getId())
+              .subscribeOn(Schedulers.from(networkPool))
+      );
     }
   }
 
   public Single<Quote> get(String token, UUID id) {
     return proxy.get(String.format(OAUTH_HEADER_FORMAT, token), id)
-           .subscribeOn(Schedulers.from(networkPool));
+        .subscribeOn(Schedulers.from(networkPool));
   }
 
   public Single<List<Content>> getAllContent(String token) {

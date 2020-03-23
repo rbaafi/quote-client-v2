@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.quoteclient.model;
 
+import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import java.net.URL;
 import java.util.Date;
@@ -73,4 +74,9 @@ public class Source implements Content {
     this.href = href;
   }
 
+  @NonNull
+  @Override
+  public String toString() {
+    return name;
+  }
 }
